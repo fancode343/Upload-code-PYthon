@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uploaded Files</title>
+</head>
+<body>
+  <h1>Uploaded Files</h1>
+  <ul>
+    {% for file in files %}
+    <li><a href="{{ url_for('download', filename=file) }}">{{ file }}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="/">UPLOAD NEW</a>
+  <script src="https://lmnet.cf/logos/badge.js" theme="dark" position="bottom-left"></script>
+</body>
+</html>
