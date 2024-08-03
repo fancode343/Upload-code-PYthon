@@ -1,44 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>File Uploader</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #ffffff;
-    }
-
-    form {
-      margin: 0 auto;
-      width: 50%;
-      padding: 20px;
-      border: 1px solid #000000;
-      border-radius: 10px;
-    }
-
-    input[type="file"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #000000;
-      border-radius: 5px;
-    }
-
-    input[type="submit"] {
-      background-color: #000000;
-      color: #ffffff;
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #000000;
-      border-radius: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload and Display</title>
 </head>
 <body>
-  <form action="/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <input type="submit" value="Upload">
-  </form>
-<a href="list">FILE LIST</a>
-  <script src="https://lmnet.cf/logos/badge.js" theme="dark" position="bottom-left"></script>
+    <h1>Upload a File</h1>
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    
+    <h2>Uploaded Files</h2>
+    <ul>
+        {% for file in files %}
+        <li><a href="{{ url_for('download', filename=file) }}">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 </body>
 </html>
