@@ -72,13 +72,13 @@ def file_manager():
 # Define the index route
 @app.route("/", methods=["GET"])
 def index():
-    return render_template("index.html")
+    files = os.listdir(app.config["UPLOAD_FOLDER"])
+    return render_template("index.html", files=files)
   
 @app.route('/research-paper')
 def research_paper():
     return render_template('researchpaper.html')
 
-
-
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8080)
+
